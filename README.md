@@ -65,3 +65,12 @@ Arquivo config.ini nele contempla as configurações diversas:
   serial=/dev/ttyUSB0
   baudrate=9600
   stat=1
+
+Rotina da JIGA:
+ Jiga Liga        -> Verifica e conecta a ECIL via serial coletando a temperatura PV e AUX.
+ Jiga Aguarda     -> Retorno do Gota (Deve retornar o status:start e set_temp:XX).
+ Jiga Recebe temp -> Atualiza a temperatura do ECIL e entra na rotina de monitoramento de temp ate estabilizar.
+ Jiga Envia       -> Para o Gota o status:steady +  "temppv": "X.X", "tempaux": "X.X".
+ Jiga Aguarda     -> O gota envia a nova temperatura status: start ou o status:reset ficando em stand-by.
+ Jiga Aguarda     -> Pode enviar para Gota através do botão 1, faz novo envio, botão 2 fecha aplicação.
+
